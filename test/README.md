@@ -4,6 +4,7 @@
 #### issues:
 - getline reads the last space atr the end of the string (user input).
 	and then tokenize treates it as (token).
+- print new line after exiting (ctrl+D).
 - Convert strncmp to our own _strncmp
 - Convert strcat to our own _strcat
 
