@@ -3,10 +3,11 @@
 
 #### issues:
 - getline reads the last space atr the end of the string (user input).
-	and then tokenize treates it as (token).
+	and then _tokenize treates it as (token).
+- return value for _tokenize function? or any other function?
 - Convert strncmp to our own _strncmp
 - Convert strcat to our own _strcat
-
+- convert getline to our own _getline
 
 #### TODO
 - impelemnt:
