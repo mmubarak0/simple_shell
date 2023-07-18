@@ -13,7 +13,7 @@ int main(__attribute__((unused))int argc,
 		__attribute__((unused))char *argv[], __attribute__((unused))char **env)
 {
 	char *str = NULL, **args;
-	size_t size = 1024;
+	size_t size = 1024, i;
 
 	if (isatty(STDIN_FILENO))
 		while (1)
@@ -23,7 +23,10 @@ int main(__attribute__((unused))int argc,
 			if (getline(&str, &size, stdin) == -1)
 				exit(98);
 
-			args = tokenize(str, " ", size);
+			args = _tokenize(str, " ");
+			/* Test */
+			for (i = 0; args[i]; i++)
+				printf("args[%ld]: %s\n", i, args[i]);
 
 			/**
 			 * decied wether built-in, alias, executable.

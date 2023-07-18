@@ -6,6 +6,6 @@
 #include <unistd.h>
 #include <stdio.h>
 
-char **tokenize(char *str, char *split, size_t size);
+char **_tokenize(char *str, char *split);
 
 #endif
