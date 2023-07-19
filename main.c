@@ -1,21 +1,22 @@
 #include "main.h"
-#include "findcmd.h"
 
 /**
  * main - Entry Point
  * @argc: arguments count.
  * @argv: arguments string.
- * @env: environment variables.
  * Return: 0 on Success
  */
 
 int main(__attribute__((unused))int argc,
-		__attribute__((unused))char *argv[], __attribute__((unused))char **env)
+		__attribute__((unused))char *argv[])
 {
 	char *str = NULL, **args;
 	size_t size = 1024, i;
+	list_t *path;
 
 	if (isatty(STDIN_FILENO))
+	{
+		path = getpath();
 		while (1)
 		{
 
@@ -35,7 +36,7 @@ int main(__attribute__((unused))int argc,
 			if (check_cmd(args[0], env) != -1)
 				printf("hi");
 		}
-
+	}
 	else
 		return (98);
 

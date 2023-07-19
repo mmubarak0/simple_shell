@@ -1,21 +1,17 @@
-#include "general.h"
-#include <string.h>
+#include "main.h"
 
 /**
   * _getenv - get the value of an environment variable.
   * @s: name of the env.
-  * @env: env list.
-  * @len: length of s.
   * Return: string corrospond to value of the s.
   */
-char *_getenv(char *s, char **env, unsigned int len)
+char *_getenv(char *s)
 {
 	unsigned int i = 0;
+	char **env = environ;
+	size_t len = _strlen(s);
 
-	/*
-	 * TODO Replace strncmp with -> _strncmp.
-	 */
-	while (strncmp(env[i], s, len))
+	while (_strncmp(env[i], s, len))
 		i++;
 	return (env[i] + len + 1);
 }

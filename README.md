@@ -6,6 +6,7 @@
 	and then _tokenize treates it as (token).
 - return value for _tokenize function? or any other function?
 - convert getline to our own _getline
+- _strdup function is needed
 
 #### TODO
 - impelemnt:
