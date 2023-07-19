@@ -4,28 +4,39 @@
  * _tokenize - function that split a string into tokens, our own (strtok).
  * @str: the string to tokenize
  * @split: the delim used to split's string.
- * Return: the tokenize string on success, on failure ..
+ * Return: the tokenize string on success, on failure NULL.
  */
 
 char **_tokenize(char *str, char *split)
 {
 	size_t locate, index = 0;
-	size_t length, counter;
+	size_t counter, delim = 0;
 	char **toks;
 
-	length = strlen(str + 1);
-	toks = malloc(sizeof(char *) * length + 1);
+	if (!str || !split)
+		return (NULL);
+
+
+	for (counter = 0; str[counter]; counter++)
+		if(str[counter] == *split)
+			delim++;
+
+	toks = (char **)malloc(sizeof(char *) * (delim + 2));
 
 	if (!toks)
 	{
-		perror("Allocation failed");
+		perror("malloc");
+		return (NULL);
 	}
 
 	counter = 0;
-	while (counter < length)
+	while (str[counter])
 	{
+		while (str[counter] == *split)
+			counter++;
+
 		locate = strcspn(str + counter, split);
-		if (locate == length - counter)
+		if (locate == counter)
 		{
 			toks[index] = strdup(str + counter);
 			index++;
@@ -40,5 +51,4 @@ char **_tokenize(char *str, char *split)
 	toks[index] = '\0';
 
 	return (toks);
-
 }
