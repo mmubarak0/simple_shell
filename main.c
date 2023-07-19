@@ -31,12 +31,11 @@ int main(__attribute__((unused))int argc,
 			/* Test */
 			for (i = 0; args[i]; i++)
 				printf("args[%ld]: %s\n", i, args[i]);
-
 			/**
 			 * decied wether built-in, alias, executable.
 			 * execute()
 			 **/
-			found = check_cmd(args[0], path);
+				found = check_cmd(args[0], path);
 			/* Test */
 			printf("found %d\n", found);
 		}

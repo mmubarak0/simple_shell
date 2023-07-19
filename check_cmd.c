@@ -10,11 +10,26 @@
   */
 int check_cmd(char *command, char **path)
 {
+	int i;
+	char buf[MAX_LENGTH];
 
-	(void)path;
 	if (access(command, F_OK) == 0)
 		return (1);
-	else
-		return (0); /* check for built in command */
+	/*
+	*else
+	*	return (0);  check for built in command
+	*/
+
+	i = 0;
+	while (path[i])
+	{
+		memset(buf, '\0', MAX_LENGTH);
+		strcpy(buf, path[i]);
+		strcat(buf, "/");
+		strcat(buf, command);
+		if (access(buf, F_OK) == 0)
+			return (1);
+		i++;
+	}
 	return (0);
 }

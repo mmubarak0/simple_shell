@@ -3,6 +3,8 @@
 
 #define _GNU_SOURCE
 
+#define MAX_LENGTH 4096
+
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>

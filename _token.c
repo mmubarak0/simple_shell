@@ -15,40 +15,30 @@ char **_tokenize(char *str, char *split)
 
 	if (!str || !split)
 		return (NULL);
-
-
 	for (counter = 0; str[counter]; counter++)
-		if(str[counter] == *split)
+		if (str[counter] == *split)
 			delim++;
-
 	toks = (char **)malloc(sizeof(char *) * (delim + 2));
-
 	if (!toks)
 	{
 		perror("malloc");
 		return (NULL);
 	}
-
 	counter = 0;
 	while (str[counter])
 	{
 		while (str[counter] == *split)
 			counter++;
-
 		locate = strcspn(str + counter, split);
 		if (locate == counter)
 		{
-			toks[index] = strdup(str + counter);
-			index++;
+			toks[index++] = strdup(str + counter);
 			break;
 		}
 		str[counter + locate] = '\0';
-		toks[index] = strdup(str + counter);
-		index++;
+		toks[index++] = strdup(str + counter);
 		counter = counter + locate + 1;
 	}
-
-	toks[index] = '\0';
-
+	toks[index] = NULL;
 	return (toks);
 }
