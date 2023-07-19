@@ -10,13 +10,12 @@
 int main(__attribute__((unused))int argc,
 		__attribute__((unused))char *argv[])
 {
-	char *str = NULL, **args;
+	char *str = NULL, *path_buf, **args;
 	size_t size = 1024, i;
-	list_t *path;
 
+	path_buf = getpath();
 	if (isatty(STDIN_FILENO))
 	{
-		path = getpath();
 		while (1)
 		{
 
@@ -33,8 +32,6 @@ int main(__attribute__((unused))int argc,
 			 * decied wether built-in, alias, executable.
 			 * execute()
 			 **/
-			if (check_cmd(args[0], env) != -1)
-				printf("hi");
 		}
 	}
 	else
