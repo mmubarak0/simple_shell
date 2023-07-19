@@ -5,7 +5,7 @@
   * @str: string
   * Return: length of the str.
   */
-int _strlen(const char *str)
+int _strlen(char *str)
 {
 	int i = 0;
 

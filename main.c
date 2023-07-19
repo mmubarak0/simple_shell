@@ -10,10 +10,14 @@
 int main(__attribute__((unused))int argc,
 		__attribute__((unused))char *argv[])
 {
-	char *str = NULL, *path_buf, **args;
+	char *str = NULL, *path_buf, **path, **args;
 	size_t size = 1024, i;
+	int found;
 
 	path_buf = getpath();
+	if (!path_buf)
+		exit(98);
+	path = _tokenize(path_buf, ":");
 	if (isatty(STDIN_FILENO))
 	{
 		while (1)
@@ -32,6 +36,9 @@ int main(__attribute__((unused))int argc,
 			 * decied wether built-in, alias, executable.
 			 * execute()
 			 **/
+			found = check_cmd(args[0], path);
+			/* Test */
+			printf("found %d\n", found);
 		}
 	}
 	else
