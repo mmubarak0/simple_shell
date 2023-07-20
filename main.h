@@ -15,7 +15,6 @@
 /* -> utilities functions */
 
 char **_tokenize(char *str, char *split);
-char **_tokenize2(char *str, char *split);
 
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
@@ -25,6 +24,8 @@ int _strlen(char *str);
 char *getpath(void);
 int check_cmd(char *command, char **path, char buf[]);
 char *_memset(char *s, char b, unsigned int n);
+char *_strchr(char *s, char c);
+char *_strncpy(char *dest, char *src, int n);
 
 void process(char **path);
 void execute(pid_t pid, char *command);

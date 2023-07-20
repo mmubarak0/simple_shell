@@ -9,6 +9,7 @@
 - Commands run only if there is a trailing space in the input.
 - commands are running without parameters for now.
 - There is lot of memory leaks in this shell.
+- _strchr causes segmentation fault.
 
 #### TODO
 - impelemnt:

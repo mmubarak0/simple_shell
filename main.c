@@ -15,7 +15,7 @@ int main(__attribute__((unused))int argc,
 	path_buf = getpath();
 	if (!path_buf)
 		exit(98);
-	path = _tokenize2(path_buf, ":");
+	path = _tokenize(path_buf, ":");
 	if (isatty(STDIN_FILENO))
 	{
 		while (1)

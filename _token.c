@@ -39,7 +39,7 @@ char **_tokenize(char *str, char *split)
 			end++;
 
 		toks[index] = malloc(end - start + 1);
-		strncpy(toks[index], str + start, end - start);
+		_strncpy(toks[index], str + start, end - start);
 		toks[index][end - start] = '\0';
 		index++;
 		start = end;
