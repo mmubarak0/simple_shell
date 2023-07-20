@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 /* -> utilities functions */
 
@@ -21,10 +23,11 @@ int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, size_t n);
 int _strlen(char *str);
 char *getpath(void);
-int check_cmd(char *command, char **path);
+int check_cmd(char *command, char **path, char buf[]);
 char *_memset(char *s, char b, unsigned int n);
 
 void process(char **path);
+void execute(pid_t pid, char *command);
 
 /* General functions */
 char *_getenv(char *s);

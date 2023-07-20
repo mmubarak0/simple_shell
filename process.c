@@ -2,12 +2,15 @@
 
 /**
   * process - process the input.
+  * @path: path environment variable.
   */
 void process(char **path)
 {
 	char *str = NULL, **args;
 	size_t size = 1024, i;
+	char buf[MAX_LENGTH];
 	int found;
+	pid_t child_pid;
 
 	if (getline(&str, &size, stdin) == -1)
 		exit(98);
@@ -20,7 +23,11 @@ void process(char **path)
 	 * decied wether built-in, alias, executable.
 	 * execute()
 	 **/
-	found = check_cmd(args[0], path);
+	found = check_cmd(args[0], path, buf);
 	/* Test */
-	printf("found %d\n", found);
+	if (found > 0)
+	{
+		child_pid = fork();
+		execute(child_pid, buf);
+	}
 }

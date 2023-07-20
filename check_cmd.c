@@ -4,23 +4,33 @@
   * check_cmd - check for command exsistance.
   * @command: command to search for.
   * @path: a list of strings contan the value of PATH.
+  * @buf: the buffer to save the path of file commands
   * Return:	0 if not found
-  *		1 if built-in command.
-  *		2 if file command
+  *		1 if file command
+  *		2 if built-in command.
   */
-int check_cmd(char *command, char **path)
+int check_cmd(char *command, char **path, char *buf)
 {
 	int i;
-	char buf[MAX_LENGTH];
 	char *builtins[] = {"env", NULL};
 
 	if (access(command, F_OK) == 0)
+	{
+		_memset(buf, '\0', MAX_LENGTH);
+		_strcpy(buf, command);
 		return (1);
+	}
 
 	i = 0;
 	while (builtins[i])
+	{
 		if (_strcmp(builtins[i++], command) == 0)
-			return (0);
+		{
+			_memset(buf, '\0', MAX_LENGTH);
+			_strcpy(buf, command);
+			return (2);
+		}
+	}
 
 	i = 0;
 	while (path[i])
