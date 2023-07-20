@@ -15,6 +15,7 @@
 /* -> utilities functions */
 
 char **_tokenize(char *str, char *split);
+char **_tokenize2(char *str, char *split);
 
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);

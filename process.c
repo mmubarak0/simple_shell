@@ -15,7 +15,7 @@ void process(char **path)
 	if (getline(&str, &size, stdin) == -1)
 		exit(98);
 
-	args = _tokenize(str, " \t");
+	args = _tokenize(str, " \t\r\n");
 	/* Test */
 	for (i = 0; args[i]; i++)
 		printf("args[%ld]: %s\n", i, args[i]);
