@@ -3,8 +3,9 @@
 
 #### issues:
 
-- convert getline to our own _getline
-- _strdup function is needed
+- convert getline to our own _getline.
+- _strdup function is needed.
+- when exit with CTRL_D there should be a new line.
 
 #### TODO
 - impelemnt:

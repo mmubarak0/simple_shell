@@ -17,7 +17,7 @@ int main(__attribute__((unused))int argc,
 	path_buf = getpath();
 	if (!path_buf)
 		exit(98);
-	path = _tokenize(path_buf, ":");
+	path = _tokenize2(path_buf, ":");
 	if (isatty(STDIN_FILENO))
 	{
 		while (1)
@@ -27,7 +27,7 @@ int main(__attribute__((unused))int argc,
 			if (getline(&str, &size, stdin) == -1)
 				exit(98);
 
-			args = _tokenize(str, " ");
+			args = _tokenize2(str, " ");
 			/* Test */
 			for (i = 0; args[i]; i++)
 				printf("args[%ld]: %s\n", i, args[i]);
@@ -35,7 +35,7 @@ int main(__attribute__((unused))int argc,
 			 * decied wether built-in, alias, executable.
 			 * execute()
 			 **/
-				found = check_cmd(args[0], path);
+			found = check_cmd(args[0], path);
 			/* Test */
 			printf("found %d\n", found);
 		}

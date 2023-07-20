@@ -14,14 +14,17 @@
 
 int _strncmp(char *s1, char *s2, size_t n)
 {
-	size_t i;
-
 	if (!s1 || !s2)
 		return (-1);
 
-	for (i = 0; *s1 != '\0'; i++)
-		if (*s1++ != *s2++ || i == n)
-			break;
-
-	return (*s1 - *s2);
+	while (n && *s1 && (*s1 == *s2))
+	{
+		++s1;
+		++s2;
+		--n;
+	}
+	if (n == 0)
+		return (0);
+	else
+		return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
