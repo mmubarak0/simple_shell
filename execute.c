@@ -15,11 +15,10 @@ void execute(pid_t pid, char *command)
 		argVec[0] = command;
 		if (execve(command, argVec, envVec) == -1)
 			perror("could not run the command!");
-		printf("something went wrong!");
 	}
 	else
 	{
-		/* parent process */
+		/* parent process wait for child process */
 		wait(NULL);
 	}
 }
