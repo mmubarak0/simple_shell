@@ -24,6 +24,8 @@ char *getpath(void);
 int check_cmd(char *command, char **path);
 char *_memset(char *s, char b, unsigned int n);
 
+void process(char **path);
+
 /* General functions */
 char *_getenv(char *s);
 
