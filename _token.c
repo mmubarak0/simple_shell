@@ -6,16 +6,18 @@
  * @split: the delim used to split's string.
  * Return: the tokenize string on success, on failure NULL.
  */
+
 char **_tokenize(char *str, char *split)
 {
-	size_t locate, index = 0;
-	size_t counter, delim = 0;
 	char **toks;
+	int delim = 0;
+	int i, index = 0;
+	int start, end;
 
 	if (!str || !split)
 		return (NULL);
-	for (counter = 0; str[counter]; counter++)
-		if (str[counter] == *split)
+	for (i = 0; str[i]; i++)
+		if (strchr(split, str[i]) != NULL)
 			delim++;
 	toks = (char **)malloc(sizeof(char *) * (delim + 2));
 	if (!toks)
@@ -23,21 +25,26 @@ char **_tokenize(char *str, char *split)
 		perror("malloc");
 		return (NULL);
 	}
-	counter = 0;
-	while (str[counter])
+
+	start = 0;
+	while (str[start] != '\0')
 	{
-		while (str[counter] == *split)
-			counter++;
-		locate = strcspn(str + counter, split);
-		if (locate == counter)
-		{
-			toks[index++] = strdup(str + counter);
+		while (str[start] != '\0' && strchr(split, str[start]) != NULL)
+			start++;
+		if (str[start] == '\0')
 			break;
-		}
-		str[counter + locate] = '\0';
-		toks[index++] = strdup(str + counter);
-		counter = counter + locate + 1;
+
+		end = start;
+		while (str[end] != '\0' && strchr(split, str[end]) == NULL)
+			end++;
+
+		toks[index] = malloc(end - start + 1);
+		strncpy(toks[index], str + start, end - start);
+		toks[index][end - start] = '\0';
+		index++;
+		start = end;
 	}
+
 	toks[index] = NULL;
 	return (toks);
 }
@@ -48,6 +55,7 @@ char **_tokenize(char *str, char *split)
  * @split: the delim used to split's string.
  * Return: the tokenize string on success, on failure NULL.
  */
+
 char **_tokenize2(char *str, char *split)
 {
 	char *token, **toks;

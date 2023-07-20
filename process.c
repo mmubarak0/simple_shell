@@ -12,7 +12,7 @@ void process(char **path)
 	if (getline(&str, &size, stdin) == -1)
 		exit(98);
 
-	args = _tokenize2(str, " ");
+	args = _tokenize(str, " \t");
 	/* Test */
 	for (i = 0; args[i]; i++)
 		printf("args[%ld]: %s\n", i, args[i]);
