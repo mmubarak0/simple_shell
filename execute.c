@@ -5,15 +5,11 @@
   * @pid: process id.
   * @command: the command to be executed.
   */
-void execute(pid_t pid, char *command)
+void execute(pid_t pid, char *command, char **args)
 {
-	char *argVec[] = {NULL, NULL};
-	char *envVec[] = {NULL};
-
 	if (pid == 0)
 	{
-		argVec[0] = command;
-		if (execve(command, argVec, envVec) == -1)
+		if (execve(command, args, environ) == -1)
 			perror("could not run the command!");
 	}
 	else

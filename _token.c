@@ -17,7 +17,7 @@ char **_tokenize(char *str, char *split)
 	if (!str || !split)
 		return (NULL);
 	for (i = 0; str[i]; i++)
-		if (strchr(split, str[i]) != NULL)
+		if (_strchr(split, str[i]) != NULL)
 			delim++;
 	toks = (char **)malloc(sizeof(char *) * (delim + 2));
 	if (!toks)
@@ -29,13 +29,13 @@ char **_tokenize(char *str, char *split)
 	start = 0;
 	while (str[start] != '\0')
 	{
-		while (str[start] != '\0' && strchr(split, str[start]) != NULL)
+		while (str[start] != '\0' && _strchr(split, str[start]) != NULL)
 			start++;
 		if (str[start] == '\0')
 			break;
 
 		end = start;
-		while (str[end] != '\0' && strchr(split, str[end]) == NULL)
+		while (str[end] != '\0' && _strchr(split, str[end]) == NULL)
 			end++;
 
 		toks[index] = malloc(end - start + 1);
@@ -66,14 +66,20 @@ char **_tokenize2(char *str, char *split)
 	{
 		for (j = 0; split[j]; j++)
 			if (str[i] == split[j])
+			{
 				size++;
+				break;
+			}
 		i++;
 	}
 	token = strtok(str, split);
 	toks = malloc(sizeof(char *) * (size + 2));
 
 	if (!toks)
+	{
 		perror("Allocation faild");
+		return (NULL);
+	}
 	i = 0;
 	while (token)
 	{

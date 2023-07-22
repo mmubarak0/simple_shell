@@ -12,7 +12,7 @@ void process(char **path)
 	int found;
 	pid_t child_pid;
 
-	if (getline(&str, &size, stdin) == -1)
+	if (_getline(&str, &size, STDIN_FILENO) == -1)
 		exit(98);
 
 	args = _tokenize(str, " \t\r\n");
@@ -28,6 +28,15 @@ void process(char **path)
 	if (found > 0)
 	{
 		child_pid = fork();
-		execute(child_pid, buf);
+		execute(child_pid, buf, args); /* will be moved to eval.c*/
+		switch (found)
+		{
+			case 1:
+				/* call eval function */
+				break;
+			case 2:
+				/* call built function */
+				break;
+		}
 	}
 }
