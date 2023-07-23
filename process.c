@@ -4,10 +4,11 @@
   * process - process the input.
   * @path: path environment variable.
   */
+
 void process(char **path)
 {
 	char *str = NULL, **args;
-	size_t size = 1024, i;
+	size_t size = 1024;
 	char buf[MAX_LENGTH];
 	int found;
 	pid_t child_pid;
@@ -16,26 +17,21 @@ void process(char **path)
 		exit(98);
 
 	args = _tokenize(str, " \t\r\n");
-	/* Test */
-	for (i = 0; args[i]; i++)
-		printf("args[%ld]: %s\n", i, args[i]);
-	/**
-	 * decied wether built-in, alias, executable.
-	 * execute()
-	 **/
+
 	found = check_cmd(args[0], path, buf);
+
 	/* Test */
 	if (found > 0)
 	{
-		child_pid = fork();
-		execute(child_pid, buf, args); /* will be moved to eval.c*/
 		switch (found)
 		{
 			case 1:
 				/* call eval function */
+				child_pid = fork();
+				execute(child_pid, buf, args);
 				break;
 			case 2:
-				/* call built function */
+				built(args);
 				break;
 		}
 	}

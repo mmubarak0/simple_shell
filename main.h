@@ -14,6 +14,25 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+/* built-ins function */
+
+int _ext(__attribute__((unused))char **arg);
+
+/**
+ * struct built - struct for built-ins commands
+ * @command_name: name of the command
+ * @function: pointer to the command's related function
+ * Description: structer holds name of built-ins commands
+ * ** and callback function.
+ */
+
+typedef struct built
+{
+	char *command_name;
+	int (*function)(char **args);
+} builts_cmd;
+
+
 /* -> utilities functions */
 
 char **_tokenize(char *str, char *split);
@@ -32,6 +51,7 @@ char *getpath(void);
 int check_cmd(char *command, char **path, char buf[]);
 void process(char **path);
 void execute(pid_t pid, char *command, char **args);
+void built(char **args);
 
 /* General functions */
 char *_getenv(char *s);
