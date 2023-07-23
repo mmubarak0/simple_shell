@@ -48,39 +48,3 @@ char **_tokenize(char *str, char *split)
 	toks[index] = NULL;
 	return (toks);
 }
-
-/**
- * _tokenize2 - function that split a string into tokens.
- * @str: the string to tokenize
- * @split: the delim used to split's string.
- * Return: the tokenize string on success, on failure NULL.
- */
-
-char **_tokenize2(char *str, char *split)
-{
-	char *token, **toks;
-	int i, j, size;
-
-	i = 0;
-	while (str[i])
-	{
-		for (j = 0; split[j]; j++)
-			if (str[i] == split[j])
-				size++;
-		i++;
-	}
-	token = strtok(str, split);
-	toks = malloc(sizeof(char *) * (size + 2));
-
-	if (!toks)
-		perror("Allocation faild");
-	i = 0;
-	while (token)
-	{
-		toks[i++] = token;
-		token = strtok(NULL, split);
-	}
-	toks[i] = NULL;
-
-	return (toks);
-}
