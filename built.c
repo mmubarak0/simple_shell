@@ -4,7 +4,6 @@
  * built - a function that handles the built-ins commands.
  * @args: user input tokenized as arguments.
  */
-
 void built(char **args)
 {
 	size_t i;
@@ -14,8 +13,14 @@ void built(char **args)
 		{NULL, NULL}
 	};
 
-
-	for (i = 0; i < sizeof(cmds); i++)
+	i = 0;
+	while (cmds[i].command_name)
+	{
 		if (_strcmp(args[0], cmds[i].command_name) == 0)
+		{
 			cmds[i].function(args);
+			break;
+		}
+		i++;
+	}
 }

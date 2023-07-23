@@ -19,14 +19,10 @@ int main(__attribute__((unused))int argc,
 	if (isatty(STDIN_FILENO))
 	{
 		while (1)
-		{
-
-			write(STDOUT_FILENO, "$ ", 3);
-			process(path);
-		}
+			process(path, argv[0]);
 	}
 	else
-		process(path);
+		process(path, argv[0]);
 
 	return (0);
 }

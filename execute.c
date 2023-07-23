@@ -4,6 +4,7 @@
   * execute - execute a command.
   * @pid: process id.
   * @command: the command to be executed.
+  * @args: argument vector.
   */
 void execute(pid_t pid, char *command, char **args)
 {

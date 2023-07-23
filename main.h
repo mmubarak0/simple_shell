@@ -7,6 +7,7 @@
 #define BUFFER_SIZE 1024
 
 #include <string.h>
+#include <stdarg.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -46,10 +47,13 @@ char *_memset(char *s, char b, unsigned int n);
 char *_strchr(char *s, char c);
 char *_strncpy(char *dest, char *src, int n);
 char *_memcpy(char *dest, char *src, unsigned int n);
+void *_realloc(void *ptr, size_t size);
+int _atoi(char *s);
+void print_strings(char *separator, unsigned int n, ...);
 
 char *getpath(void);
 int check_cmd(char *command, char **path, char buf[]);
-void process(char **path);
+void process(char **path, char *pname);
 void execute(pid_t pid, char *command, char **args);
 void built(char **args);
 

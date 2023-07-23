@@ -33,7 +33,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		if ((size_t)(total + nread + 1) > *n)
 		{
 			*n = total + nread + 1;
-			temp = realloc(*lineptr, *n);
+			temp = (char *)_realloc(*lineptr, *n);
 
 			if (temp == NULL)
 				return (-1);
