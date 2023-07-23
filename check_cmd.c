@@ -12,7 +12,11 @@
 int check_cmd(char *command, char **path, char *buf)
 {
 	int i;
-	char *builtins[] = {"env", NULL};
+	char *builtins[] = {
+		"env", "exit",
+		"setenv", "unsetenv",
+		"cd", "alias",
+		NULL};
 
 	if (access(command, F_OK) == 0)
 	{
