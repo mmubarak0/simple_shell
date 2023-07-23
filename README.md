@@ -8,6 +8,7 @@
 - commands are running without parameters for now.
 - There is lot of memory leaks in this shell.
 - _realloc function is needed.
+- _atoi function is needed.
 
 
 #### TODO
