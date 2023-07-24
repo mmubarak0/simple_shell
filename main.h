@@ -50,12 +50,14 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, size_t size);
 int _atoi(char *s);
 void print_strings(char *separator, unsigned int n, ...);
+char *_readline(int *command_num);
 
 char *getpath(void);
 int check_cmd(char *command, char **path, char buf[]);
 void process(char **path, char *pname);
 void execute(pid_t pid, char *command, char **args);
 void built(char **args);
+void eval(char *command, char **args);
 
 /* General functions */
 char *_getenv(char *s);
