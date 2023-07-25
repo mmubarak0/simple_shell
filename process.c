@@ -1,31 +1,18 @@
 #include "main.h"
 
 /**
-  * process - process the input.
-  * @path: path environment variable.
-  * @pname: shell name.
+  * inner_process - process the arguments.
   */
-
-void process(char **path, char *pname)
+void inner_process(char *str, char **path, char *pname, int command_num)
 {
-	char *str = NULL, **args;
+	int found;
 	char buf[MAX_LENGTH];
-	int found, i;
-	int command_num = 1;
+	char **args;
+	int i;
 
-	str = _readline(&command_num);
-	if (!str)
-	{
-		for (i = 0; path[i]; i++)
-			free(path[i]);
-		free(path);
-		exit(0);
-	}
 	args = _tokenize(str, " \t\r\n");
 	found = check_cmd(args[0], path, buf);
 	free(str);
-
-	/* Test */
 	switch (found)
 	{
 		case 1:
@@ -44,4 +31,35 @@ void process(char **path, char *pname)
 	for (i = 0; args[i]; i++)
 		free(args[i]);
 	free(args);
+}
+/**
+  * process - process the input.
+  * @path: path environment variable.
+  * @pname: shell name.
+  */
+void process(char **path, char *pname)
+{
+	char *str = NULL, **args_all, **args_semi;
+	int i, semi_len;
+	int command_num = 1;
+
+	str = _readline(&command_num);
+	if (!str)
+	{
+		for (i = 0; path[i]; i++)
+			free(path[i]);
+		free(path);
+		exit(0);
+	}
+	args_all = _tokenize(str, "#");
+	args_semi = _tokenize(args_all[0], ";");
+	for (semi_len = 0; args_semi[semi_len]; semi_len++)
+		continue;
+	if (semi_len > 1)
+	{
+		for (i = 0; args_semi[i]; i++)
+			inner_process(args_semi[i], path, pname, command_num);
+	}
+	else
+		inner_process(args_all[0], path, pname, command_num);
 }

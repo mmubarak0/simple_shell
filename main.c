@@ -17,16 +17,23 @@ int main(__attribute__((unused))int argc,
 	if (!path_buf)
 		exit(98);
 	path = _tokenize(path_buf, ":");
-	if (isatty(STDIN_FILENO))
+	if (argc == 1)
 	{
-		while (1)
+		if (isatty(STDIN_FILENO))
+		{
+			while (1)
+				process(path, argv[0]);
+		}
+		else
 			process(path, argv[0]);
+		/* -> free 96 bytes, 109 bytes: 2 record*/
+		for (i = 0; path[i]; i++)
+			free(path[i]);
 	}
-	else
-		process(path, argv[0]);
-	/* -> free 96 bytes, 109 bytes: 2 record*/
-	for (i = 0; path[i]; i++)
-		free(path[i]);
+	else if (argc == 2)
+	{
+		/* execute file commands */
+	}
 	free(path);
 	free(path_buf);
 	return (0);
