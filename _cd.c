@@ -20,7 +20,7 @@ int _cd(char **arg)
 		exit(-1);
 	}
 
-	dir = _dir(arg);
+	dir = _path(arg);
 	change = chdir(dir);
 
 	if (change == -1)
@@ -29,6 +29,11 @@ int _cd(char **arg)
 		exit(-1);
 	}
 
+	
+	/* update the PWD with the new dir */
+	setenv("PWD", dir, 1);
+	/* update the OLDPWD with the previous path */
+	setenv("OLDPWD", cwd, 1);
 	/**
 	 * in need to create the _setenv function
 	 * ** to implement the "-" feature.
@@ -47,10 +52,9 @@ char *_path(char **arg)
 {
 
 	if (arg[1] == NULL)
-		return (_getenv("HOME"));
+		return (getenv("HOME"));
+	else if (_strcmp(arg[1], "-") == 0)
+		return (getenv("OLDPWD"));
 	else
 		return (arg[1]);
-	/**
-	 * else the argv[1] == "-".
-	 */
 }

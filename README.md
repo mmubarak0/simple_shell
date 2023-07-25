@@ -3,7 +3,6 @@
 
 #### issues:
 
-- replace printf in _env.
 - to continue with the cd(), we need to create _setenv.
 - There is lot of memory leaks in this shell.
 	- 9 bytes in 2 blocks are still reachable in loss record 1 of 3

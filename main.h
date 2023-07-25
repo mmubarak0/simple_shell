@@ -21,6 +21,7 @@
 int _ext(__attribute__((unused))char **arg);
 int _env(__attribute__((unused))char **arg);
 int _cd(char **arg);
+int _setenv(char **args);
 /**
  * struct built - struct for built-ins commands
  * @command_name: name of the command
