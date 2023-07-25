@@ -10,6 +10,8 @@ void built(char **args)
 
 	builts_cmd cmds[] = {
 		{"exit", _ext},
+		{"env", _env},
+		{"cd", _cd},
 		{NULL, NULL}
 	};
 
