@@ -18,6 +18,8 @@ int check_cmd(char *command, char **path, char *buf)
 		"cd", "alias",
 		NULL};
 
+	if (!command)
+		return (-1);
 	if (access(command, F_OK) == 0)
 	{
 		_memset(buf, '\0', MAX_LENGTH);

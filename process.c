@@ -15,10 +15,15 @@ void process(char **path, char *pname)
 
 	str = _readline(&command_num);
 	if (!str)
+	{
+		for (i = 0; path[i]; i++)
+			free(path[i]);
+		free(path);
 		exit(0);
+	}
 	args = _tokenize(str, " \t\r\n");
-	free(str);
 	found = check_cmd(args[0], path, buf);
+	free(str);
 
 	/* Test */
 	switch (found)

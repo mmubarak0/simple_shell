@@ -20,18 +20,14 @@ int main(__attribute__((unused))int argc,
 	if (isatty(STDIN_FILENO))
 	{
 		while (1)
-		{
 			process(path, argv[0]);
-			/* -> free 96 bytes, 109 bytes: 2 record*/
-			for (i = 0; path[i]; i++)
-				free(path[i]);
-			free(path);
-		}
 	}
 	else
 		process(path, argv[0]);
-
-
+	/* -> free 96 bytes, 109 bytes: 2 record*/
+	for (i = 0; path[i]; i++)
+		free(path[i]);
+	free(path);
 	free(path_buf);
 	return (0);
 }

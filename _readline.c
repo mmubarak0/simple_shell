@@ -19,7 +19,10 @@ char *_readline(int *command_num)
 		(*command_num)++;
 	}
 	if (b == -1)
+	{
+		free(str);
 		exit(EXIT_FAILURE);
+	}
 	else if (b == 0)
 	{
 		free(str);
