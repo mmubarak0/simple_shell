@@ -47,7 +47,7 @@ char *_path(char **arg)
 {
 
 	if (arg[1] == NULL)
-		return (getenv("HOME"));
+		return (_getenv("HOME"));
 	else
 		return (arg[1]);
 	/**

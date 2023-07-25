@@ -8,6 +8,7 @@
 
 #include <string.h>
 #include <stdarg.h>
+#include <stddef.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -34,6 +35,17 @@ typedef struct built
 	int (*function)(char **args);
 } builts_cmd;
 
+/**
+  * struct identifier - select the function to process the format
+  * @type: -> char: format type.
+  * @function: -> pointer to a function taking va_list as argument return int:
+  * function to process the format.
+  */
+typedef struct identifier
+{
+	char type;
+	int (*function)(va_list, unsigned long *);
+} id;
 
 /* -> utilities functions */
 
@@ -52,6 +64,7 @@ void *_realloc(void *ptr, size_t size);
 int _atoi(char *s);
 void print_strings(char *separator, unsigned int n, ...);
 char *_readline(int *command_num);
+char *_dtos(long);
 
 char *getpath(void);
 int check_cmd(char *command, char **path, char buf[]);
@@ -59,9 +72,16 @@ void process(char **path, char *pname);
 void execute(pid_t pid, char *command, char **args);
 void built(char **args);
 void eval(char *command, char **args);
+void cmd_not_found(char *pname, int command_num, char *command);
 
 /* General functions */
 char *_getenv(char *s);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
+
+/* printing functions */
+int _putchar(char);
+int print_c(char c);
+int print_s(char *s);
+int print_d(long d);
 
 #endif

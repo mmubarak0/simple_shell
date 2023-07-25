@@ -11,6 +11,9 @@ int _env(__attribute__((unused))char **arg)
 	int i;
 
 	for (i = 0; environ[i]; i++)
-		printf("%s\n", environ[i]);
+	{
+		print_s(environ[i]);
+		print_c('\n');
+	}
 	return (0);
 }

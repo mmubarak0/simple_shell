@@ -2,6 +2,10 @@
 
 /**
   * inner_process - process the arguments.
+  * @str: command to be processed.
+  * @path: path array.
+  * @pname: program name.
+  * @command_num: command number.
   */
 void inner_process(char *str, char **path, char *pname, int command_num)
 {
@@ -23,7 +27,7 @@ void inner_process(char *str, char **path, char *pname, int command_num)
 			built(args);
 			break;
 		default:
-			printf("%s: %d: %s: not found\n", pname, command_num, args[0]);
+			cmd_not_found(pname, command_num, args[0]);
 			fflush(stdout);
 			break;
 	}
@@ -41,7 +45,7 @@ void process(char **path, char *pname)
 {
 	char *str = NULL, **args_all, **args_semi;
 	int i, semi_len;
-	int command_num = 1;
+	int command_num = 0;
 
 	str = _readline(&command_num);
 	if (!str)
