@@ -3,6 +3,8 @@
 
 #### issues:
 
+- replace printf in _env.
+- to continue with the cd(), we need to create _setenv.
 - There is lot of memory leaks in this shell.
 	- 9 bytes in 2 blocks are still reachable in loss record 1 of 3
    		`by 0x10A634: _tokenize (_token.c:41)
@@ -12,13 +14,8 @@
 		`by 0x10A53F: _tokenize (_token.c:22)
 		by 0x109F94: process (process.c:33)
 		by 0x109B84: main (main.c:24)`
-	- 1,024 bytes in 1 blocks are still reachable in loss record 3 of 3
-		`by 0x10996A: _getline (_getline.c:22)
-		by 0x109F20: process (process.c:23)
-		by 0x109B84: main (main.c:24)`
 #### TODO
 - impelemnt:
 	- eval.c `exec file commands`
-	- builtins.c `run built in commnads` ✅
-	- prompt error message if the command is not built-in or execuatable ✅
-
+	- _setenv.c `change an enviroment variable`
+	- modify print_strings() to accept `%s`
