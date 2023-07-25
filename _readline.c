@@ -3,18 +3,22 @@
 /**
   * _readline - read a line from standared input
   * @command_num: input numbers.
+  * @isaty: is a tty ?
   * Return: input string.
   */
-char *_readline(int *command_num)
+char *_readline(int *command_num, int isaty)
 {
 	char *str = NULL;
 	size_t size = 1024;
 	ssize_t b = 1;
 
-	while (b == 1)
+	while (b == 1 || (str && str[0] == '#'))
 	{
-		write(STDOUT_FILENO, "$ ", 3);
-		fflush(stdout);
+		if (isaty)
+		{
+			write(STDOUT_FILENO, "$ ", 3);
+			fflush(stdout);
+		}
 		b = _getline(&str, &size, STDIN_FILENO);
 		(*command_num)++;
 	}

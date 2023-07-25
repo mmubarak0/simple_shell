@@ -63,13 +63,14 @@ char *_strncpy(char *dest, char *src, int n);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, size_t size);
 int _atoi(char *s);
-void print_strings(char *separator, unsigned int n, ...);
-char *_readline(int *command_num);
+char *_readline(int *command_num, int isaty);
 char *_dtos(long);
+char *read_textfile(char *filename, size_t letters);
 
 char *getpath(void);
 int check_cmd(char *command, char **path, char buf[]);
-void process(char **path, char *pname);
+void process(char **path, char *pname, int isaty);
+void process_file(char **path, char *pname, char *fname);
 void execute(pid_t pid, char *command, char **args);
 void built(char **args);
 void eval(char *command, char **args);

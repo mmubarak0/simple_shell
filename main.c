@@ -22,10 +22,10 @@ int main(__attribute__((unused))int argc,
 		if (isatty(STDIN_FILENO))
 		{
 			while (1)
-				process(path, argv[0]);
+				process(path, argv[0], 1);
 		}
 		else
-			process(path, argv[0]);
+			process(path, argv[0], 0);
 		/* -> free 96 bytes, 109 bytes: 2 record*/
 		for (i = 0; path[i]; i++)
 			free(path[i]);
@@ -33,8 +33,9 @@ int main(__attribute__((unused))int argc,
 	else if (argc == 2)
 	{
 		/* execute file commands */
+		process_file(path, argv[0], argv[1]);
 	}
 	free(path);
-	free(path_buf);
+	/*free(path_buf);*/
 	return (0);
 }

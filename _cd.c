@@ -29,7 +29,7 @@ int _cd(char **arg)
 		exit(-1);
 	}
 
-	
+
 	/* update the PWD with the new dir */
 	setenv("PWD", dir, 1);
 	/* update the OLDPWD with the previous path */
