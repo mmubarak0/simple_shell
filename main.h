@@ -18,9 +18,8 @@
 
 /* built-ins function */
 
-int _ext(__attribute__((unused))char **arg);
+int _ext(char **arg);
 int _env(__attribute__((unused))char **arg);
-int _cd(char **arg);
 int _setenv(char **arg);
 int _unsetenv(char **arg);
 

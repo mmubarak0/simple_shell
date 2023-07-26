@@ -13,7 +13,6 @@ void built(char **args)
 		{"env", _env},
 		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
-		{"cd", _cd},
 		{NULL, NULL}
 	};
 
