@@ -4,9 +4,10 @@
   * _readline - read a line from standared input
   * @command_num: input numbers.
   * @isaty: is a tty ?
+  * @dynamic: dynamic reference.
   * Return: input string.
   */
-char *_readline(int *command_num, int isaty)
+char *_readline(int *command_num, int isaty, ref_t *dynamic)
 {
 	char *str = NULL;
 	size_t size = 1024;
@@ -25,13 +26,17 @@ char *_readline(int *command_num, int isaty)
 	if (b == -1)
 	{
 		free(str);
+		free_buf(dynamic->ptr3);
+		free(dynamic);
 		exit(EXIT_FAILURE);
 	}
-	else if (b == 0)
+	else if (b == 0) /* CTRL+D Handler */
 	{
 		free(str);
 		write(STDOUT_FILENO, "\n", 2);
-		return (NULL);
+		free_buf(dynamic->ptr3);
+		free(dynamic);
+		exit(0);
 	}
 	return (str);
 }

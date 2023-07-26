@@ -16,12 +16,18 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-/* built-ins function */
-
-int _ext(char **arg);
-int _env(__attribute__((unused))char **arg);
-int _setenv(char **arg);
-int _unsetenv(char **arg);
+/**
+  * struct refs - bala
+  * @ptr1: a
+  * @ptr2: b
+  * @ptr3: c
+  */
+typedef struct refs
+{
+	char **ptr1;
+	char **ptr2;
+	char **ptr3;
+} ref_t;
 
 /**
  * struct built - struct for built-ins commands
@@ -34,7 +40,7 @@ int _unsetenv(char **arg);
 typedef struct built
 {
 	char *command_name;
-	int (*function)(char **args);
+	int (*function)(char **args, ref_t *);
 } builts_cmd;
 
 /**
@@ -64,7 +70,7 @@ char *_strncpy(char *dest, char *src, int n);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, size_t size);
 int _atoi(char *s);
-char *_readline(int *command_num, int isaty);
+char *_readline(int *command_num, int isaty, ref_t *);
 char *_dtos(long);
 char *read_textfile(char *filename, size_t letters);
 
@@ -73,7 +79,7 @@ int check_cmd(char *command, char **path, char buf[]);
 void process(char **path, char *pname, int isaty);
 void process_file(char **path, char *pname, char *fname);
 void execute(pid_t pid, char *command, char **args);
-void built(char **args);
+void built(char **args, ref_t *);
 void eval(char *command, char **args);
 void cmd_not_found(char *pname, int command_num, char *command);
 void free_buf(char **arg);
@@ -87,5 +93,12 @@ int _putchar(char);
 int print_c(char c);
 int print_s(char *s);
 int print_d(long d);
+
+/* built-ins function */
+
+int _ext(char **arg, ref_t *);
+int _env(char **arg, ref_t *);
+int _setenv(char **arg, ref_t *);
+int _unsetenv(char **arg, ref_t *);
 
 #endif

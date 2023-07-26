@@ -5,20 +5,22 @@
 /**
  * _setenv - our own setenv
  * @arg: user input
+ * @dynamic: dynamic refrence.
  * Return: 0 on success, -1 on failure
  */
 
-int _setenv(char **arg)
+int _setenv(char **arg, ref_t *dynamic)
 {
 	char *new;
 	int i, count = 0;
 
+	(void)dynamic;
 	if (arg[1] == NULL || arg[2] == NULL)
 		return (-1);
 
 	for (i = 0; arg[i]; i++)
 		count++;
-	
+
 	if (count > MAX_ARGS)
 		return (-1);
 

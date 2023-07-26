@@ -3,8 +3,9 @@
 /**
  * built - a function that handles the built-ins commands.
  * @args: user input tokenized as arguments.
+ * @dynamic: dynamic reference.
  */
-void built(char **args)
+void built(char **args, ref_t *dynamic)
 {
 	size_t i;
 
@@ -22,7 +23,7 @@ void built(char **args)
 
 		if (_strcmp(args[0], cmds[i].command_name) == 0)
 		{
-			cmds[i].function(args);
+			cmds[i].function(args, dynamic);
 			break;
 		}
 		i++;
