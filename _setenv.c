@@ -23,7 +23,14 @@ int _setenv(char **arg)
 	{
 		return (-1);
 	}
+
 	new = malloc(_strlen(arg[1]) * _strlen(arg[2]) + 1);
+
+	if (new == NULL)
+	{
+		perror("malloc");
+		return (-1);
+	}
 
 	_strcpy(new, arg[1]);
 	_strcat(new, "=");
@@ -32,6 +39,7 @@ int _setenv(char **arg)
 
 	if (putenv(new) == -1)
 	{
+		perror("putenv");
 		free(new);
 		return (-1);
 	}

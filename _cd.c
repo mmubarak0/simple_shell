@@ -18,7 +18,7 @@ int _cd(char **arg)
 	if (getcwd(cwd, 1024) == NULL)
 	{
 		perror("getcwd");
-		exit(-1);
+		return (-1);
 	}
 
 	dir = _path(arg);
@@ -30,7 +30,7 @@ int _cd(char **arg)
 	if (change == -1)
 	{
 		perror("chdir");
-		exit(-1);
+		return (-1);
 	}
 
 
@@ -41,6 +41,8 @@ int _cd(char **arg)
 	if (_set("OLDPWD", cwd) == -1)
 		return (-1);
 
+
+	return (0);
 }
 
 /**
