@@ -21,13 +21,19 @@ void inner_process(char *str, char **path, char *pname, int command_num)
 		case 1:
 			/* call eval function */
 			eval(buf, args);
+			if (args)
+				free_buf(args);
 			break;
 		case 2:
 			built(args);
+			if (args)
+				free_buf(args);
 			break;
 		default:
 			cmd_not_found(pname, command_num, args[0]);
 			fflush(stdout);
+			if (args)
+				free_buf(args);
 			break;
 	}
 
@@ -47,22 +53,27 @@ void process(char **path, char *pname, int isaty)
 	str = _readline(&command_num, isaty);
 	if (!str)
 	{
-		for (i = 0; path[i]; i++)
-			free(path[i]);
-		free(path);
+		free_buf(path);
 		exit(0);
 	}
 	args_all = _tokenize(str, "#");
 	args_semi = _tokenize(args_all[0], ";");
+	free(str);
 	for (semi_len = 0; args_semi[semi_len]; semi_len++)
 		continue;
 	if (semi_len > 1)
 	{
+		free_buf(args_all);
 		for (i = 0; args_semi[i]; i++)
 			inner_process(args_semi[i], path, pname, command_num);
+		free(args_semi);
 	}
 	else
+	{
+		free_buf(args_semi);
 		inner_process(args_all[0], path, pname, command_num);
+		free(args_all);
+	}
 }
 
 /**

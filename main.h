@@ -76,6 +76,7 @@ void execute(pid_t pid, char *command, char **args);
 void built(char **args);
 void eval(char *command, char **args);
 void cmd_not_found(char *pname, int command_num, char *command);
+void free_buf(char **arg);
 
 /* General functions */
 char *_getenv(char *s);

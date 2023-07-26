@@ -17,21 +17,22 @@ int _ext(char **arg)
 	{
 		if (arg[1][0] == '-')
 		{
-			fprintf(stderr, "./hsh: 1: exit: Illegal number: %s\n", arg[1]);
-			exit(2);
+			free_buf(arg);
+			return (-1);
 		}
 		while (arg[1][i])
 		{
 			if (_isdigit(arg[1][i]) == -1)
 			{
-				fprintf(stderr, "./hsh: 1: exit: Illegal number: %s\n", arg[1]);
-				exit(2);
+				free_buf(arg);
+				return (-1);
 			}
 			i++;
 		}
 		status = _atoi(arg[1]);
 	}
-	exit(status);
+	free_buf(arg);
+	return (status);
 }
 
 /**
