@@ -14,7 +14,7 @@ void inner_process(char *str, char **path, char *pname, int command_num)
 	char **args;
 	int i;
 
-	args = _tokenize(str, " \t\r\n");
+	args = _tokenize(str, " \t\r\n\0");
 	found = check_cmd(args[0], path, buf);
 	free(str);
 	switch (found)
@@ -40,14 +40,15 @@ void inner_process(char *str, char **path, char *pname, int command_num)
   * process - process the input.
   * @path: path environment variable.
   * @pname: shell name.
+  * @isaty: is a tty ?
   */
-void process(char **path, char *pname)
+void process(char **path, char *pname, int isaty)
 {
 	char *str = NULL, **args_all, **args_semi;
 	int i, semi_len;
 	int command_num = 0;
 
-	str = _readline(&command_num);
+	str = _readline(&command_num, isaty);
 	if (!str)
 	{
 		for (i = 0; path[i]; i++)
@@ -66,4 +67,22 @@ void process(char **path, char *pname)
 	}
 	else
 		inner_process(args_all[0], path, pname, command_num);
+}
+
+/**
+  * process_file - process the file content.
+  * @path: path environment variable.
+  * @pname: shell name.
+  * @fname: file name.
+  */
+void process_file(char **path, char *pname, char *fname)
+{
+	char **args_all, *str = NULL;
+	int i;
+	int command_num = 0;
+
+	str = read_textfile(fname, MAX_LENGTH);
+	args_all = _tokenize(str, "\n");
+	for (i = 0; args_all[i]; i++)
+		inner_process(args_all[i], path, pname, command_num);
 }

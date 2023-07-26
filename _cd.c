@@ -33,6 +33,7 @@ int _cd(char **arg)
 		exit(-1);
 	}
 
+
 	/* -> Update PWD, OLDPWD */
 	if (_set("PWD", dir) == -1)
 		return (-1);
@@ -40,7 +41,6 @@ int _cd(char **arg)
 	if (_set("OLDPWD", cwd) == -1)
 		return (-1);
 
-	return (0);
 }
 
 /**
