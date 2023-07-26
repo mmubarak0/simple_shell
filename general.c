@@ -11,8 +11,10 @@ char *_getenv(char *s)
 	char **env = environ;
 	size_t len = _strlen(s);
 
-	while (_strncmp(env[i], s, len))
+	while (env[i] && _strncmp(env[i], s, len))
 		i++;
 
+	if (env[i] == NULL)
+		return (NULL);
 	return (env[i] + len + 1);
 }

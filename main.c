@@ -10,7 +10,6 @@
 int main(int argc, char *argv[])
 {
 	char *path_buf, **path;
-	int i;
 
 	path_buf = getpath();
 	if (!path_buf)
@@ -35,9 +34,5 @@ int main(int argc, char *argv[])
 		process_file(path, argv[0], argv[1]);
 	}
 
-	/* free */
-	for (i = 0; path[i]; i++)
-		free(path[i]);
-	free(path);
 	return (0);
 }

@@ -5,10 +5,11 @@ int _isdigit(int c);
 /**
  * _ext - our own exit built-in command
  * @arg: parameter to hold user input
+ * @dynamic: dynamic reference.
  * Return: Always 0
  */
 
-int _ext(char **arg)
+int _ext(char **arg, ref_t *dynamic)
 {
 	int i = 0;
 	int status = 0;
@@ -18,21 +19,42 @@ int _ext(char **arg)
 		if (arg[1][0] == '-')
 		{
 			free_buf(arg);
-			return (-1);
+			if (dynamic->ptr1)
+				free_buf(dynamic->ptr1);
+			if (dynamic->ptr2)
+				free_buf(dynamic->ptr2);
+			if (dynamic->ptr3)
+				free_buf(dynamic->ptr3);
+			free(dynamic);
+			exit(-1);
 		}
 		while (arg[1][i])
 		{
 			if (_isdigit(arg[1][i]) == -1)
 			{
 				free_buf(arg);
-				return (-1);
+				if (dynamic->ptr1)
+					free_buf(dynamic->ptr1);
+				if (dynamic->ptr2)
+					free_buf(dynamic->ptr2);
+				if (dynamic->ptr3)
+					free_buf(dynamic->ptr3);
+				free(dynamic);
+				exit(-1);
 			}
 			i++;
 		}
 		status = _atoi(arg[1]);
 	}
 	free_buf(arg);
-	return (status);
+	if (dynamic->ptr1)
+		free_buf(dynamic->ptr1);
+	if (dynamic->ptr2)
+		free_buf(dynamic->ptr2);
+	if (dynamic->ptr3)
+		free_buf(dynamic->ptr3);
+	free(dynamic);
+	exit(status);
 }
 
 /**
