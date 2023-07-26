@@ -41,8 +41,8 @@ int _cd(char **arg)
 	if (_set("OLDPWD", cwd) == -1)
 		return (-1);
 
-
 	return (0);
+
 }
 
 /**
@@ -55,9 +55,15 @@ char *_path(char **arg)
 {
 
 	if (arg[1] == NULL)
-		return (_getenv("HOME"));
+		return (getenv("HOME"));
 	else if (_strcmp(arg[1], "-") == 0)
-		return (_getenv("OLDPWD"));
+	{
+
+		if (getenv("OLDPWD") == NULL)
+			return (NULL);
+		else
+			return (getenv("OLDPWD"));
+	}
 	else
 		return (arg[1]);
 }
@@ -82,7 +88,8 @@ int _set(char *name, char *value)
 	_strcat(new, "=");
 	_strcat(new, value);
 
-	putenv(new);
-	free(new);
+	if (putenv(new) == -1)
+		perror("putenv");
+
 	return (0);
 }

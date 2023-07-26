@@ -18,11 +18,9 @@ int _setenv(char **arg)
 
 	for (i = 0; arg[i]; i++)
 		count++;
-	/* -> print error to stderr: print_errors() */
+	
 	if (count > MAX_ARGS)
-	{
 		return (-1);
-	}
 
 	new = malloc(_strlen(arg[1]) * _strlen(arg[2]) + 1);
 
@@ -43,6 +41,5 @@ int _setenv(char **arg)
 		return (-1);
 	}
 
-	free(new);
 	return (0);
 }
