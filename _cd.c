@@ -1,6 +1,7 @@
 #include "main.h"
 
 char *_path(char **arg);
+int _set(char *name, char *value);
 
 /**
  * _cd - our own cd command
@@ -21,6 +22,9 @@ int _cd(char **arg)
 	}
 
 	dir = _path(arg);
+	if (dir == NULL)
+		return (-1);
+
 	change = chdir(dir);
 
 	if (change == -1)
@@ -29,15 +33,12 @@ int _cd(char **arg)
 		exit(-1);
 	}
 
-	
-	/* update the PWD with the new dir */
-	setenv("PWD", dir, 1);
-	/* update the OLDPWD with the previous path */
-	setenv("OLDPWD", cwd, 1);
-	/**
-	 * in need to create the _setenv function
-	 * ** to implement the "-" feature.
-	 */
+	/* -> Update PWD, OLDPWD */
+	if (_set("PWD", dir) == -1)
+		return (-1);
+
+	if (_set("OLDPWD", cwd) == -1)
+		return (-1);
 
 	return (0);
 }
@@ -57,4 +58,32 @@ char *_path(char **arg)
 		return (getenv("OLDPWD"));
 	else
 		return (arg[1]);
+}
+
+
+/**
+ * _set - a modified version of setenv, to handle hcanging PWD, OLDPWD
+ * @name: name of the variable.
+ * @value: the value that should contain in the name.
+ * Return: 0 on success, -1 on failure
+ */
+
+int _set(char *name, char *value)
+{
+	char *new;
+
+	new = malloc(strlen(name) + strlen(value) + 2);
+	if (new == NULL)
+		return (-1);
+
+	_strcpy(new, name);
+	_strcat(new, "=");
+	_strcat(new, value);
+
+	if (putenv(new) == -1)
+	{
+		free(new);
+		return (-1);
+	}
+	return (0);
 }

@@ -3,7 +3,7 @@
 
 #### issues:
 
-- to continue with the cd(), we need to create _setenv.
+- handle errors, _setenv and _unsetenv.
 - There is lot of memory leaks in this shell.
 	- 9 bytes in 2 blocks are still reachable in loss record 1 of 3
    		`by 0x10A634: _tokenize (_token.c:41)
@@ -16,5 +16,3 @@
 #### TODO
 - impelemnt:
 	- eval.c `exec file commands`
-	- _setenv.c `change an enviroment variable`
-	- modify print_strings() to accept `%s`

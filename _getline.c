@@ -45,6 +45,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		if (buffer[nread - 1] == '\n')
 			break;
 	}
+
 	(*lineptr)[total] = '\0';
 	return (total);
 }

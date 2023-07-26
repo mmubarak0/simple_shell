@@ -11,6 +11,8 @@ void built(char **args)
 	builts_cmd cmds[] = {
 		{"exit", _ext},
 		{"env", _env},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
 		{"cd", _cd},
 		{NULL, NULL}
 	};
@@ -18,6 +20,7 @@ void built(char **args)
 	i = 0;
 	while (cmds[i].command_name)
 	{
+
 		if (_strcmp(args[0], cmds[i].command_name) == 0)
 		{
 			cmds[i].function(args);
@@ -25,4 +28,5 @@ void built(char **args)
 		}
 		i++;
 	}
+
 }
