@@ -40,8 +40,9 @@ int _setenv(char **arg)
 	if (putenv(new) == -1)
 	{
 		perror("putenv");
-		free(new);
 		return (-1);
 	}
+
+	free(new);
 	return (0);
 }

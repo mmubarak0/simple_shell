@@ -67,6 +67,9 @@ void process(char **path, char *pname, int isaty)
 	}
 	else
 		inner_process(args_all[0], path, pname, command_num);
+
+	/* -> 1 record: 4000 bytes */
+	free(str);
 }
 
 /**

@@ -7,8 +7,7 @@
  * Return: 0 on Success
  */
 
-int main(__attribute__((unused))int argc,
-		__attribute__((unused))char *argv[])
+int main(int argc, char *argv[])
 {
 	char *path_buf, **path;
 	int i;
@@ -22,20 +21,23 @@ int main(__attribute__((unused))int argc,
 		if (isatty(STDIN_FILENO))
 		{
 			while (1)
+			{
 				process(path, argv[0], 1);
+			}
 		}
 		else
 			process(path, argv[0], 0);
-		/* -> free 96 bytes, 109 bytes: 2 record*/
-		for (i = 0; path[i]; i++)
-			free(path[i]);
+
 	}
 	else if (argc == 2)
 	{
 		/* execute file commands */
 		process_file(path, argv[0], argv[1]);
 	}
+
+	/* free */
+	for (i = 0; path[i]; i++)
+		free(path[i]);
 	free(path);
-	/*free(path_buf);*/
 	return (0);
 }

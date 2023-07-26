@@ -46,5 +46,6 @@ char **_tokenize(char *str, char *split)
 	}
 
 	toks[index] = NULL;
+
 	return (toks);
 }

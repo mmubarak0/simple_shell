@@ -55,9 +55,9 @@ char *_path(char **arg)
 {
 
 	if (arg[1] == NULL)
-		return (getenv("HOME"));
+		return (_getenv("HOME"));
 	else if (_strcmp(arg[1], "-") == 0)
-		return (getenv("OLDPWD"));
+		return (_getenv("OLDPWD"));
 	else
 		return (arg[1]);
 }
@@ -74,7 +74,7 @@ int _set(char *name, char *value)
 {
 	char *new;
 
-	new = malloc(strlen(name) + strlen(value) + 2);
+	new = malloc(_strlen(name) + _strlen(value) + 2);
 	if (new == NULL)
 		return (-1);
 
@@ -82,10 +82,7 @@ int _set(char *name, char *value)
 	_strcat(new, "=");
 	_strcat(new, value);
 
-	if (putenv(new) == -1)
-	{
-		free(new);
-		return (-1);
-	}
+	putenv(new);
+	free(new);
 	return (0);
 }
