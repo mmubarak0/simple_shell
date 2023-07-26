@@ -13,5 +13,6 @@ char *_getenv(char *s)
 
 	while (_strncmp(env[i], s, len))
 		i++;
+
 	return (env[i] + len + 1);
 }

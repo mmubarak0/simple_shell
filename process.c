@@ -12,7 +12,6 @@ void inner_process(char *str, char **path, char *pname, int command_num)
 	int found;
 	char buf[MAX_LENGTH];
 	char **args;
-	int i;
 
 	args = _tokenize(str, " \t\r\n\0");
 	found = check_cmd(args[0], path, buf);
@@ -31,10 +30,7 @@ void inner_process(char *str, char **path, char *pname, int command_num)
 			fflush(stdout);
 			break;
 	}
-	/* -> free 1024, 39 bytes, 7 bytes: 3 record*/
-	for (i = 0; args[i]; i++)
-		free(args[i]);
-	free(args);
+
 }
 /**
   * process - process the input.
@@ -67,9 +63,6 @@ void process(char **path, char *pname, int isaty)
 	}
 	else
 		inner_process(args_all[0], path, pname, command_num);
-
-	/* -> 1 record: 4000 bytes */
-	free(str);
 }
 
 /**

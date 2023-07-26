@@ -5,7 +5,7 @@
  * @arg: parameter to hold user input
  * Return: Always 0
  */
-int _ext(__attribute__((unused))char **arg)
+int _ext(char **arg)
 {
 	int status = 0;
 
