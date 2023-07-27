@@ -89,10 +89,10 @@ char *_getenv(char *s);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
 
 /* printing functions */
-int _putchar(char);
-int print_c(char c);
-int print_s(char *s);
-int print_d(long d);
+int _putchar(char, int);
+int print_c(char c, int);
+int print_s(char *s, int);
+int print_d(long d, int);
 
 /* built-ins function */
 

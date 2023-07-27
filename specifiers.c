@@ -5,9 +5,9 @@
  * @c: character to print
  * Return: length of the variable or -1
  */
-int print_c(char c)
+int print_c(char c, int file_no)
 {
-	return (_putchar(c));
+	return (_putchar(c, file_no));
 }
 
 /**
@@ -15,7 +15,7 @@ int print_c(char c)
  * @s: string to be printed
  * Return: length of the variable or -1
  */
-int print_s(char *s)
+int print_s(char *s, int file_no)
 {
 	int i = 0;
 
@@ -23,7 +23,7 @@ int print_s(char *s)
 		return (-1);
 	while (s[i])
 	{
-		_putchar(s[i]);
+		_putchar(s[i], file_no);
 		i++;
 	}
 	return (i);
@@ -34,7 +34,7 @@ int print_s(char *s)
  * @d: number to be printed
  * Return: length of the variable or -1
  */
-int print_d(long d)
+int print_d(long d, int file_no)
 {
 	char *dtos;
 	int i = 0;
@@ -42,7 +42,7 @@ int print_d(long d)
 	dtos = _dtos(d);
 	while (dtos[i])
 	{
-		_putchar(dtos[i]);
+		_putchar(dtos[i], file_no);
 		i++;
 	}
 	free(dtos);

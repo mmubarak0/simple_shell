@@ -8,14 +8,14 @@
   */
 void cmd_not_found(char *pname, int command_num, char *command)
 {
-	print_s(pname);
-	print_c(':');
-	print_c(' ');
-	print_d(command_num);
-	print_c(':');
-	print_c(' ');
-	print_s(command);
-	print_c(':');
-	print_c(' ');
-	print_s("not found\n");
+	print_s(pname, STDERR_FILENO);
+	print_c(':', STDERR_FILENO);
+	print_c(' ', STDERR_FILENO);
+	print_d(command_num, STDERR_FILENO);
+	print_c(':', STDERR_FILENO);
+	print_c(' ', STDERR_FILENO);
+	print_s(command, STDERR_FILENO);
+	print_c(':', STDERR_FILENO);
+	print_c(' ', STDERR_FILENO);
+	print_s("not found\n", STDERR_FILENO);
 }

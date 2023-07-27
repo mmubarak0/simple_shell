@@ -37,7 +37,7 @@ void inner_process(char *str, char **path, char *pname,
 			break;
 		default:
 			cmd_not_found(pname, command_num, args[0]);
-			fflush(stdout);
+			fflush(stderr);
 			if (dynamic->ptr1)
 				free_buf(dynamic->ptr1);
 			if (dynamic->ptr2)
