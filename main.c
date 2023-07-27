@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
 			{
 				process(path, argv[0], 1);
 			}
+			free_buf(path);
 		}
 		else
 		{
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
 	{
 		/* execute file commands */
 		process_file(path, argv[0], argv[1]);
+		free_buf(path);
 	}
 
 	return (0);
