@@ -15,8 +15,8 @@ int _env(char **arg, ref_t *dynamic)
 	(void)dynamic;
 	for (i = 0; environ[i]; i++)
 	{
-		print_s(environ[i]);
-		print_c('\n');
+		print_s(environ[i], STDOUT_FILENO);
+		print_c('\n', STDOUT_FILENO);
 	}
 	return (0);
 }
