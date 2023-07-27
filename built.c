@@ -11,6 +11,7 @@ void built(char **args, ref_t *dynamic)
 
 	builts_cmd cmds[] = {
 		{"exit", _ext},
+		{"cd", _cd},
 		{"env", _env},
 		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},

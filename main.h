@@ -87,6 +87,7 @@ void free_buf(char **arg);
 /* General functions */
 char *_getenv(char *s);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
+int _putenv(char *string);
 
 /* printing functions */
 int _putchar(char, int);
@@ -100,5 +101,6 @@ int _ext(char **arg, ref_t *);
 int _env(char **arg, ref_t *);
 int _setenv(char **arg, ref_t *);
 int _unsetenv(char **arg, ref_t *);
+int _cd(char **arg, ref_t *);
 
 #endif
