@@ -25,7 +25,10 @@ int main(int argc, char *argv[])
 			}
 		}
 		else
+		{
 			process(path, argv[0], 0);
+			free_buf(path);
+		}
 
 	}
 	else if (argc == 2)
