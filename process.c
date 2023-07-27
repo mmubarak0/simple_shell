@@ -32,6 +32,11 @@ void inner_process(char *str, char **path, char *pname,
 			break;
 		case 2:
 			built(args, dynamic);
+			if (dynamic->ptr1)
+				free_buf(dynamic->ptr1);
+			if (dynamic->ptr2)
+				free_buf(dynamic->ptr2);
+			free(dynamic);
 			if (args)
 				free_buf(args);
 			break;

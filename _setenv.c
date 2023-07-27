@@ -43,5 +43,6 @@ int _setenv(char **arg, ref_t *dynamic)
 		return (-1);
 	}
 
+	free (new);
 	return (0);
 }
