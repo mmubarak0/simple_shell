@@ -7,6 +7,7 @@
   * @fd: file descriptor.
   * Return: the number of bytes readed or -1 (eof, err, ...).
   */
+
 ssize_t _getline(char **lineptr, size_t *n, int fd)
 {
 	char buffer[BUFFER_SIZE];
@@ -19,7 +20,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 	if (*lineptr == NULL || *n == 0)
 	{
 		*n = BUFFER_SIZE;
-		*lineptr = malloc(*n);
+		*lineptr = malloc((*n) + 1);
 		if (*lineptr == NULL)
 			return (-1);
 	}

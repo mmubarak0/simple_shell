@@ -4,7 +4,7 @@
 #define _GNU_SOURCE
 
 #define MAX_LENGTH 4096
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 2048
 
 #include <string.h>
 #include <stdarg.h>
