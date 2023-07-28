@@ -9,12 +9,11 @@
 
 int main(int argc, char *argv[])
 {
-	char *path_buf, **path;
+	char *path_buf, **path = NULL;
 
 	path_buf = getpath();
-	if (!path_buf)
-		exit(98);
-	path = _tokenize(path_buf, ":");
+	if (path_buf)
+		path = _tokenize(path_buf, ":");
 	if (argc == 1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -39,5 +38,5 @@ int main(int argc, char *argv[])
 		free_buf(path);
 	}
 
-	return (0);
+	return (get_err_code());
 }

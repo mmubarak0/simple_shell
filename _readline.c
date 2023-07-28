@@ -28,7 +28,7 @@ char *_readline(int *command_num, int isaty, ref_t *dynamic)
 		free(str);
 		free_buf(dynamic->ptr3);
 		free(dynamic);
-		exit(EXIT_FAILURE);
+		exit(get_err_code());
 	}
 	else if (b == 0) /* CTRL+D Handler */
 	{
@@ -36,7 +36,7 @@ char *_readline(int *command_num, int isaty, ref_t *dynamic)
 		write(STDOUT_FILENO, "\n", 2);
 		free_buf(dynamic->ptr3);
 		free(dynamic);
-		exit(0);
+		exit(get_err_code());
 	}
 	return (str);
 }

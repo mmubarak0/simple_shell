@@ -26,6 +26,7 @@ void inner_process(char *str, char **path, char *pname,
 	{
 		case 1:
 			/* call eval function */
+			set_err_code(0);
 			eval(buf, args);
 			if (args)
 				free_buf(args);
