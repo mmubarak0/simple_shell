@@ -9,21 +9,20 @@
 
 int _env(char **arg, ref_t *dynamic)
 {
-	int i, count;
+	int i;
 
 	(void)arg;
 	(void)dynamic;
 
-	for (count = 0; environ[count]; count++)
-		count++;
 
-	if (count == 0)
-		return (0);
+	if (environ == NULL)
+		return (-1);
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; copy[i]; i++)
 	{
-		print_s(environ[i], STDOUT_FILENO);
-		print_c('\n', STDOUT_FILENO);
+		write(STDOUT_FILENO, copy[i], _strlen(copy[i]));
+		write(STDOUT_FILENO, "\n", 2);
 	}
+
 	return (0);
 }

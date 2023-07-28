@@ -6,6 +6,7 @@ int _set(char *name, char *value);
 /**
  * _cd - our own cd command
  * @arg: parameter
+ * @dynamic: struct
  * Return: Always 0 on success, -1 on failure.
  */
 
@@ -89,8 +90,6 @@ int _set(char *name, char *value)
 	_strcat(new, value);
 
 	if (putenv(new) == -1)
-		perror("putenv");
-
-	free(new);
+		free(new);
 	return (0);
 }

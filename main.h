@@ -16,6 +16,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+extern char **environ;
+
 /**
   * struct refs - bala
   * @ptr1: a

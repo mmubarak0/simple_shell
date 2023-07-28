@@ -7,27 +7,18 @@
  */
 void built(char **args, ref_t *dynamic)
 {
-	size_t i;
+	size_t i, j;
 
 	builts_cmd cmds[] = {
 		{"exit", _ext},
 		{"cd", _cd},
 		{"env", _env},
 		{"setenv", _setenv},
-		{"unsetenv", _unsetenv},
 		{NULL, NULL}
 	};
-
-	i = 0;
-	while (cmds[i].command_name)
-	{
-
-		if (_strcmp(args[0], cmds[i].command_name) == 0)
-		{
-			cmds[i].function(args, dynamic);
-			break;
-		}
-		i++;
-	}
-
+	
+	for (i = 0; cmds[i].command_name; i++)
+		for (j = 0; args[j]; j++)
+			if (_strcmp(args[j], cmds[i].command_name) == 0)
+				cmds[i].function(args, dynamic);
 }
