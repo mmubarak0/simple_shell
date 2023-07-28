@@ -42,6 +42,7 @@ int _cd(char **arg, __attribute__((unused))ref_t *dynamic)
 	if (_set("OLDPWD", cwd) == -1)
 		return (-1);
 
+	set_err_code(0);
 	return (0);
 
 }

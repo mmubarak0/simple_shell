@@ -38,6 +38,7 @@ void inner_process(char *str, char **path, char *pname,
 		default:
 			cmd_not_found(pname, command_num, args[0]);
 			fflush(stderr);
+			set_err_code(127);
 			if (args)
 				free_buf(args);
 			break;

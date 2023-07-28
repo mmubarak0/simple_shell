@@ -60,7 +60,6 @@ typedef struct identifier
 /* -> utilities functions */
 
 char **_tokenize(char *str, char *split);
-
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
@@ -90,6 +89,8 @@ void free_buf(char **arg);
 char *_getenv(char *s);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
 int _putenv(char *string);
+int set_err_code(int);
+int get_err_code(void);
 
 /* printing functions */
 int _putchar(char, int);

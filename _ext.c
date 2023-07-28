@@ -27,7 +27,7 @@ int _ext(char **arg, ref_t *dynamic)
 			if (dynamic->ptr3)
 				free_buf(dynamic->ptr3);
 			free(dynamic);
-			exit(EXIT_FAILURE);
+			exit(2);
 		}
 		while (arg[1][i])
 		{
@@ -41,13 +41,11 @@ int _ext(char **arg, ref_t *dynamic)
 				if (dynamic->ptr3)
 					free_buf(dynamic->ptr3);
 				free(dynamic);
-				exit(EXIT_FAILURE);
+				exit(2);
 			}
 			i++;
 		}
 		status = _atoi(arg[1]);
-		if (status == -1)
-			exit(2);
 	}
 
 	free_buf(arg);
@@ -58,8 +56,9 @@ int _ext(char **arg, ref_t *dynamic)
 	if (dynamic->ptr3)
 		free_buf(dynamic->ptr3);
 	free(dynamic);
-	exit(EXIT_SUCCESS);
-
+	if (status == 0)
+		exit(get_err_code());
+	exit(status);
 }
 
 /**

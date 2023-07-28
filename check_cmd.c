@@ -12,11 +12,8 @@
 int check_cmd(char *command, char **path, char *buf)
 {
 	int i;
-	char *builtins[] = {
-		"env", "exit",
-		"setenv", "unsetenv",
-		"cd", "alias",
-		NULL};
+	char *builtins[] = {"env", "exit", "setenv", "unsetenv",
+		"cd", "alias", NULL};
 
 	if (!command)
 		return (-1);
@@ -38,6 +35,8 @@ int check_cmd(char *command, char **path, char *buf)
 		}
 	}
 
+	if (path == NULL)
+		return (-1);
 	i = 0;
 	while (path[i])
 	{

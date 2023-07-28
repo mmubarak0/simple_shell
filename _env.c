@@ -20,9 +20,10 @@ int _env(char **arg, ref_t *dynamic)
 
 	for (i = 0; environ[i]; i++)
 	{
-		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
-		write(STDOUT_FILENO, "\n", 2);
+		print_s(environ[i], STDOUT_FILENO);
+		print_c('\n', STDOUT_FILENO);
 	}
+	set_err_code(0);
 
 	return (0);
 }
