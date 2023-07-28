@@ -3,6 +3,7 @@
 /**
  * print_c - print a character.
  * @c: character to print
+ * @file_no: Stream
  * Return: length of the variable or -1
  */
 int print_c(char c, int file_no)
@@ -13,6 +14,7 @@ int print_c(char c, int file_no)
 /**
  * print_s - print a string
  * @s: string to be printed
+ * @file_no: Stream
  * Return: length of the variable or -1
  */
 int print_s(char *s, int file_no)
@@ -32,6 +34,7 @@ int print_s(char *s, int file_no)
 /**
  * print_d - print an integer
  * @d: number to be printed
+ * @file_no: Stream
  * Return: length of the variable or -1
  */
 int print_d(long d, int file_no)

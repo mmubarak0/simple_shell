@@ -1,5 +1,6 @@
 #include "main.h"
 
+
 int _isdigit(int c);
 
 /**
@@ -26,7 +27,7 @@ int _ext(char **arg, ref_t *dynamic)
 			if (dynamic->ptr3)
 				free_buf(dynamic->ptr3);
 			free(dynamic);
-			exit(-1);
+			exit(EXIT_FAILURE);
 		}
 		while (arg[1][i])
 		{
@@ -40,12 +41,15 @@ int _ext(char **arg, ref_t *dynamic)
 				if (dynamic->ptr3)
 					free_buf(dynamic->ptr3);
 				free(dynamic);
-				exit(-1);
+				exit(EXIT_FAILURE);
 			}
 			i++;
 		}
 		status = _atoi(arg[1]);
+		if (status == -1)
+			exit(2);
 	}
+
 	free_buf(arg);
 	if (dynamic->ptr1)
 		free_buf(dynamic->ptr1);
@@ -54,7 +58,8 @@ int _ext(char **arg, ref_t *dynamic)
 	if (dynamic->ptr3)
 		free_buf(dynamic->ptr3);
 	free(dynamic);
-	exit(status);
+	exit(EXIT_SUCCESS);
+
 }
 
 /**

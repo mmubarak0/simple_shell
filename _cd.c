@@ -90,6 +90,7 @@ int _set(char *name, char *value)
 	_strcat(new, value);
 
 	if (putenv(new) == -1)
-		free(new);
+		perror("putenv");
+	free(new);
 	return (0);
 }
