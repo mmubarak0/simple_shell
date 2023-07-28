@@ -10,7 +10,7 @@
 char *_readline(int *command_num, int isaty, ref_t *dynamic)
 {
 	char *str = NULL;
-	size_t size = 1024;
+	size_t size = BUFFER_SIZE;
 	ssize_t b = 1;
 
 	while (b == 1 || (str && str[0] == '#'))
