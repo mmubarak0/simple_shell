@@ -14,16 +14,14 @@ int _env(char **arg, ref_t *dynamic)
 	(void)arg;
 	(void)dynamic;
 
-
-	if (environ == NULL)
-		return (-1);
+	if (environ == NULL || *environ == NULL)
+		exit(set_err_code(0));
 
 	for (i = 0; environ[i]; i++)
 	{
 		print_s(environ[i], STDOUT_FILENO);
 		print_c('\n', STDOUT_FILENO);
 	}
-	set_err_code(0);
 
-	return (0);
+	exit(0);
 }
