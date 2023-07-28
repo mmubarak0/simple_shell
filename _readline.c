@@ -34,6 +34,7 @@ char *_readline(int *command_num, int isaty, ref_t *dynamic)
 	{
 		free(str);
 		write(STDOUT_FILENO, "\n", 2);
+		fflush(stdout);
 		free_buf(dynamic->ptr3);
 		free(dynamic);
 		exit(get_err_code());

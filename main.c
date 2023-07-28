@@ -22,12 +22,14 @@ int main(int argc, char *argv[])
 			{
 				process(path, argv[0], 1);
 			}
-			free_buf(path);
+			if (path)
+				free_buf(path);
 		}
 		else
 		{
 			process(path, argv[0], 0);
-			free_buf(path);
+			if (path)
+				free_buf(path);
 		}
 
 	}
@@ -35,7 +37,8 @@ int main(int argc, char *argv[])
 	{
 		/* execute file commands */
 		process_file(path, argv[0], argv[1]);
-		free_buf(path);
+		if (path)
+			free_buf(path);
 	}
 
 	return (get_err_code());
