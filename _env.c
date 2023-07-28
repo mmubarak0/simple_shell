@@ -18,9 +18,9 @@ int _env(char **arg, ref_t *dynamic)
 	if (environ == NULL)
 		return (-1);
 
-	for (i = 0; copy[i]; i++)
+	for (i = 0; environ[i]; i++)
 	{
-		write(STDOUT_FILENO, copy[i], _strlen(copy[i]));
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
 		write(STDOUT_FILENO, "\n", 2);
 	}
 
