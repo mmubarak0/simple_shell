@@ -29,6 +29,7 @@ typedef struct refs
 	char **ptr1;
 	char **ptr2;
 	char **ptr3;
+	char *ptr4;
 } ref_t;
 
 /**
