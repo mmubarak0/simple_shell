@@ -7,10 +7,11 @@ int _isdigit(int c);
  * _ext - our own exit built-in command
  * @arg: parameter to hold user input
  * @dynamic: dynamic reference.
+ * @pname: program name.
  * Return: Always 0
  */
 
-int _ext(char **arg, ref_t *dynamic)
+int _ext(char **arg, ref_t *dynamic, char *pname)
 {
 	int i = 0;
 	int status = 0;
@@ -19,6 +20,7 @@ int _ext(char **arg, ref_t *dynamic)
 	{
 		if (arg[1][0] == '-')
 		{
+			print_illegal_number(arg, pname);
 			free_buf(arg);
 			if (dynamic->ptr1)
 				free_buf(dynamic->ptr1);
@@ -33,6 +35,7 @@ int _ext(char **arg, ref_t *dynamic)
 		{
 			if (_isdigit(arg[1][i]) == -1)
 			{
+				print_illegal_number(arg, pname);
 				free_buf(arg);
 				if (dynamic->ptr1)
 					free_buf(dynamic->ptr1);

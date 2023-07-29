@@ -42,3 +42,27 @@ int get_err_code(void)
 {
 	return (set_err_code(-99));
 }
+
+/**
+  * set_cmd_num - set command number.
+  * @num: command number.
+  * Return: commnad Number.
+  */
+int set_cmd_num(int num)
+{
+	static int CMD_NUM;
+
+	if (-99 == num)
+		return (CMD_NUM);
+	CMD_NUM = num;
+	return (num);
+}
+
+/**
+  * get_cmd_num - get command number.
+  * Return: command number.
+  */
+int get_cmd_num(void)
+{
+	return (set_cmd_num(-99));
+}

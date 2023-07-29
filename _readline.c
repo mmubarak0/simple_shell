@@ -22,6 +22,7 @@ char *_readline(int *command_num, int isaty, ref_t *dynamic)
 		}
 		b = _getline(&str, &size, STDIN_FILENO);
 		(*command_num)++;
+		set_cmd_num(*command_num);
 	}
 	if (b == -1)
 	{

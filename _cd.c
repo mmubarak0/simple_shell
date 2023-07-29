@@ -7,15 +7,16 @@ int _set(char *name, char *value);
  * _cd - our own cd command
  * @arg: parameter
  * @dynamic: struct
+ * @pname: program name.
  * Return: Always 0 on success, -1 on failure.
  */
 
-int _cd(char **arg, __attribute__((unused))ref_t *dynamic)
+int _cd(char **arg, __attribute__((unused))ref_t *dynamic, char *pname)
 {
 	char cwd[1024], *dir;
 	int change = 0;
 
-
+	(void)pname;
 	if (getcwd(cwd, 1024) == NULL)
 	{
 		perror("getcwd");

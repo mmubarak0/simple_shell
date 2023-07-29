@@ -4,14 +4,16 @@
  * _setenv - our own setenv;
  * @arg: usr input
  * @dynamic: struct
+ * @pname: program name.
  * Return: 0 on success.
  */
 
-int _setenv(char **arg, ref_t *dynamic)
+int _setenv(char **arg, ref_t *dynamic, char *pname)
 {
 	int pos;
 	char *new;
 	(void)dynamic;
+	(void)pname;
 
 	for (pos = 0; arg[pos] != NULL; pos++)
 		if (_strcmp(arg[pos], "setenv") == 0)

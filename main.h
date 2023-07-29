@@ -4,7 +4,7 @@
 #define _GNU_SOURCE
 
 #define MAX_LENGTH 4096
-#define BUFFER_SIZE 6144
+#define BUFFER_SIZE 4096
 
 #include <string.h>
 #include <stdarg.h>
@@ -42,7 +42,7 @@ typedef struct refs
 typedef struct built
 {
 	char *command_name;
-	int (*function)(char **args, ref_t *);
+	int (*function)(char **args, ref_t *, char *pname);
 } builts_cmd;
 
 /**
@@ -80,10 +80,11 @@ int check_cmd(char *command, char **path, char buf[]);
 void process(char **path, char *pname, int isaty);
 void process_file(char **path, char *pname, char *fname);
 void execute(pid_t pid, char *command, char **args);
-void built(char **args, ref_t *);
+void built(char **args, ref_t *, char *pname);
 void eval(char *command, char **args);
 void cmd_not_found(char *pname, int command_num, char *command);
 void free_buf(char **arg);
+void print_illegal_number(char **args, char *pname);
 
 /* General functions */
 char *_getenv(char *s);
@@ -91,6 +92,8 @@ ssize_t _getline(char **lineptr, size_t *n, int fd);
 int _putenv(char *string);
 int set_err_code(int);
 int get_err_code(void);
+int set_cmd_num(int);
+int get_cmd_num(void);
 
 /* printing functions */
 int _putchar(char, int);
@@ -100,10 +103,10 @@ int print_d(long d, int);
 
 /* built-ins function */
 
-int _ext(char **arg, ref_t *);
-int _env(char **arg, ref_t *);
-int _setenv(char **arg, ref_t *);
-int _unsetenv(char **arg, ref_t *);
-int _cd(char **arg, ref_t *);
+int _ext(char **arg, ref_t *, char *);
+int _env(char **arg, ref_t *, char *);
+int _setenv(char **arg, ref_t *, char *);
+int _unsetenv(char **arg, ref_t *, char *);
+int _cd(char **arg, ref_t *, char *);
 
 #endif
