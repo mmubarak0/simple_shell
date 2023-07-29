@@ -104,6 +104,11 @@ void process_file(char **path, char *pname, char *fname)
 	ref_t *dynamic_ref = malloc(sizeof(ref_t));
 
 	str = read_textfile(fname, MAX_LENGTH);
+	if (str == NULL)
+	{
+		file_not_found(pname, fname);
+		exit(127);
+	}
 	args_all = _tokenize(str, "\n");
 	for (i = 0; args_all[i]; i++)
 		inner_process(args_all[i], path, pname, command_num, dynamic_ref);

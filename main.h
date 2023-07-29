@@ -85,6 +85,7 @@ void eval(char *command, char **args);
 void cmd_not_found(char *pname, int command_num, char *command);
 void free_buf(char **arg);
 void print_illegal_number(char **args, char *pname);
+void file_not_found(char *pname, char *fname);
 
 /* General functions */
 char *_getenv(char *s);

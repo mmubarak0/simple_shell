@@ -19,19 +19,19 @@ char *read_textfile(char *filename, size_t letters)
 
 	fd = rd = 0;
 	if (!filename || !letters)
-		return (0);
+		return (NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return (NULL);
 
 	buf = malloc(sizeof(char) * letters + 1);
 	if (!buf)
-		return (0);
+		return (NULL);
 	rd = read(fd, buf, letters);
 	if (rd < 0)
 	{
 		free(buf);
-		return (0);
+		return (NULL);
 	}
 	buf[letters] = '\0';
 

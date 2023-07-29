@@ -42,3 +42,19 @@ void print_illegal_number(char **args, char *pname)
 	print_s(args[1], STDERR_FILENO);
 	print_c('\n', STDERR_FILENO);
 }
+
+/**
+  * file_not_found - print file not found error.
+  * @pname: program name.
+  * @fname: file name.
+  */
+void file_not_found(char *pname, char *fname)
+{
+	print_s(pname, STDERR_FILENO);
+	print_c(':', STDERR_FILENO);
+	print_c(' ', STDERR_FILENO);
+	print_s("0: ", STDERR_FILENO);
+	print_s("Can't open ", STDERR_FILENO);
+	print_s(fname, STDERR_FILENO);
+	print_c('\n', STDERR_FILENO);
+}
