@@ -19,3 +19,26 @@ void cmd_not_found(char *pname, int command_num, char *command)
 	print_c(' ', STDERR_FILENO);
 	print_s("not found\n", STDERR_FILENO);
 }
+
+/**
+  * print_illegal_number - print illegal number error.
+  * @args: argument of the command.
+  * @pname: program name.
+  */
+void print_illegal_number(char **args, char *pname)
+{
+	print_s(pname, STDERR_FILENO);
+	print_c(':', STDERR_FILENO);
+	print_c(' ', STDERR_FILENO);
+	print_d(get_cmd_num(), STDERR_FILENO);
+	print_c(':', STDERR_FILENO);
+	print_c(' ', STDERR_FILENO);
+	print_s(args[0], STDERR_FILENO);
+	print_c(':', STDERR_FILENO);
+	print_c(' ', STDERR_FILENO);
+	print_s("Illegal number", STDERR_FILENO);
+	print_c(':', STDERR_FILENO);
+	print_c(' ', STDERR_FILENO);
+	print_s(args[1], STDERR_FILENO);
+	print_c('\n', STDERR_FILENO);
+}
