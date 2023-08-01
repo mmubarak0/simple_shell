@@ -34,3 +34,33 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 
 	return (dest);
 }
+
+/**
+  * _realloc - reallocates memory size.
+  * @ptr: old pointer.
+  * @size: new size.
+  * Return: a pointer to the newly allocated memeory.
+  */
+void *_realloc(void *ptr, size_t size)
+{
+	void *new_ptr = malloc(size);
+
+	if (!new_ptr)
+		return (NULL);
+	_memcpy(new_ptr, ptr, size);
+	free(ptr);
+	return (new_ptr);
+}
+
+/**
+  * _buffer_free - free a buffer array.
+  * @arg: buffer to free.
+  */
+void _buffer_free(char **arg)
+{
+	int i;
+
+	for (i = 0; arg[i]; i++)
+		free(arg[i]);
+	free(arg);
+}
