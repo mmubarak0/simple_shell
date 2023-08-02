@@ -91,9 +91,7 @@ int _printe(const char *format, ...)
 		if (is_format && *++a != '%')
 			id_select(a, args, 2);
 		else
-		{
 			_putchar(*a, 2);
-		}
 		a++;
 	}
 	va_end(args);

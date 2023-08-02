@@ -1,4 +1,37 @@
 #include "main.h"
+#include "main.h"
+
+/**
+  * isnum - check for numbers
+  * @a: character to test
+  * Return: 1 if number 0 otherwise
+  */
+int isnum(char a)
+{
+	if (a >= '0' && a <= '9')
+		return (1);
+	return (0);
+}
+
+/**
+  * hyphens - check number of minus signs
+  * @string: string to check
+  * @i: where the iteration stopped
+  * Return: number of hyphens
+  */
+int hyphens(char *string, int *i)
+{
+	char *str = string;
+	int sum = 0;
+
+	while (!isnum(*str) && *str != '\0')
+	{
+		(*i)++;
+		if (*str++ == '-')
+			sum++;
+	}
+	return (sum);
+}
 
 /**
  * _dtos - integer to string.
@@ -65,4 +98,27 @@ int _atoi(char *s)
 	if (num % 2)
 		return (-((unsigned int)ans));
 	return (ans);
+}
+
+/**
+  * init_ref - initialize ref_t structure.
+  * @ref: dynamic reference to init.
+  * @command_number: command number.
+  * @exit_status: exit status.
+  * @argc: argument count.
+  * @argv: argument vector.
+  * @current_command: current command.
+  * @path: path env.
+  */
+void init_ref(ref_t *ref, unsigned int command_number, int exit_status,
+		int argc, char *file_name, char **current_command,
+		char **argv, char **path)
+{
+	ref->command_number = command_number;
+	ref->exit_status = exit_status;
+	ref->argc = argc;
+	ref->file_name = file_name;
+	ref->current_command = current_command;
+	ref->argv = argv;
+	ref->path = path;
 }

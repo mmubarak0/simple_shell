@@ -25,7 +25,6 @@ int print_c(va_list args, int n)
 {
 	char c;
 
-	(*len)++;
 	c = va_arg(args, int);
 	return (_putchar(c, n));
 }
@@ -49,7 +48,6 @@ int print_s(va_list args, int n)
 		_putchar(s[i], n);
 		i++;
 	}
-	*len += i;
 	return (i);
 }
 
