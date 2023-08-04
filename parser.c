@@ -7,12 +7,14 @@
 void _readline(ref_t *ref)
 {
 	char *str = NULL;
+	char **temp;
 	size_t size = BUFFER_SIZE;
 	ssize_t n = 1;
 	int i;
+	int is_atty = isatty(STDIN_FILENO);
 
 	do {
-		if (isatty(STDIN_FILENO))
+		if (is_atty)
 		{
 			_printf("\033[0;32msimp\033[0m@0xPC:\033[0;33m%s\033[0m$ ", _getenv("PWD"));
 			fflush(stdout);
@@ -20,19 +22,24 @@ void _readline(ref_t *ref)
 		n = _getline(&str, &size, STDIN_FILENO);
 		if (n == -1)
 			/* free memory before exit */
-			exit(EXIT0x1);
+			exit(ref->exit_status);
 		if (n == 0)
 		{
 			/* free memory before exit */
-			printf("\n");
-			fflush(stdout);
-			exit(EXIT0x2);
+			if (is_atty)
+			{
+				printf("\n");
+				fflush(stdout);
+			}
+			exit(ref->exit_status);
 		}
 	} while (_empty_input(str));
-	ref->current_command = _tokenize(str, "\n");
-	for (i = 0; (ref->current_command)[i]; i++)
+	temp = _tokenize(str, "\n");
+	for (i = 0; temp[i]; i++)
 		;
 	ref->command_number += i;
+	_buffer_free(temp);
+	ref->current_command = _tokenize(str, ";\n");
 }
 
 /**
