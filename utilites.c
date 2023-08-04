@@ -106,19 +106,26 @@ int _atoi(char *s)
   * @command_number: command number.
   * @exit_status: exit status.
   * @argc: argument count.
+  * @cmd_buf: command buffer.
+  * @file_name: file name.
   * @argv: argument vector.
   * @current_command: current command.
   * @path: path env.
+  * @cmd_argv: command arguemnts vector.
+  * @env: environment variable.
   */
 void init_ref(ref_t *ref, unsigned int command_number, int exit_status,
-		int argc, char *file_name, char **current_command,
-		char **argv, char **path)
+		int argc, char cmd_buf, char *file_name, char **current_command,
+		char **argv, char **path, char **cmd_argv, char **env)
 {
 	ref->command_number = command_number;
 	ref->exit_status = exit_status;
 	ref->argc = argc;
+	_memset(ref->cmd_buf, cmd_buf, MAX_LENGTH);
 	ref->file_name = file_name;
 	ref->current_command = current_command;
 	ref->argv = argv;
 	ref->path = path;
+	ref->cmd_argv = cmd_argv;
+	ref->env = env;
 }

@@ -9,6 +9,7 @@ void _readline(ref_t *ref)
 	char *str = NULL;
 	size_t size = BUFFER_SIZE;
 	ssize_t n = 1;
+	int i;
 
 	do {
 		if (isatty(STDIN_FILENO))
@@ -17,7 +18,6 @@ void _readline(ref_t *ref)
 			fflush(stdout);
 		}
 		n = _getline(&str, &size, STDIN_FILENO);
-		ref->command_number += 1;
 		if (n == -1)
 			/* free memory before exit */
 			exit(EXIT0x1);
@@ -30,6 +30,9 @@ void _readline(ref_t *ref)
 		}
 	} while (_empty_input(str));
 	ref->current_command = _tokenize(str, "\n");
+	for (i = 0; (ref->current_command)[i]; i++)
+		;
+	ref->command_number += i;
 }
 
 /**
@@ -38,14 +41,20 @@ void _readline(ref_t *ref)
   */
 void _process(ref_t *ref)
 {
-	char **command;
 	int i;
 
 	i = 0;
 	while ((ref->current_command)[i])
 	{
-		command = _tokenize((_tokenize((ref->current_command)[i], "#"))[0], " \t\0");
-		switch (_check_command(command[0], ref))
+		ref->cmd_argv = _tokenize((
+					_tokenize((ref->current_command)[i], "#"))[0], " \t\0"
+				);
+		if (!(ref->cmd_argv))
+		{
+			i++;
+			continue;
+		}
+		switch (_check_command((ref->cmd_argv)[0], ref))
 		{
 			case 1:
 				_execute_file_command(ref);
@@ -55,7 +64,7 @@ void _process(ref_t *ref)
 				break;
 			default:
 				_printe("%s: %d: %s: not found\n", (ref->argv)[0]
-						, ref->command_number, command[0]);
+						, ref->command_number, (ref->cmd_argv)[0]);
 				break;
 		}
 		i++;

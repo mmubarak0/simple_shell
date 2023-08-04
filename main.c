@@ -18,8 +18,8 @@ int main(int argc, char **argv)
 	ref_t *ref = malloc(sizeof(ref_t));
 
 	path = _tokenize(_getenv("PATH"), ":");
-	/* ref_t *, cmd_num, ex_s, ac, fname, c_cmd, av, path */
-	init_ref(ref, 0, 0, argc, NULL, NULL, argv, path);
+	/* ref_t *, cmd_num, ex_s, ac, cmd_buf, fname, c_cmd, av, path, cmd_av, env */
+	init_ref(ref, 0, 0, argc, '\0', NULL, NULL, argv, path, NULL, environ);
 
 	/* read and process commands */
 	if (argc == 1)

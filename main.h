@@ -49,6 +49,8 @@ extern char **environ;
   * @file_name: file name.
   * @current_command: current command in process.
   * @argv: argument vector.
+  * @cmd_argv: current command arguments vector.
+  * @env: enviroment variables.
   */
 typedef struct dynamic_ref
 {
@@ -60,6 +62,8 @@ typedef struct dynamic_ref
 	char **path;
 	char **current_command;
 	char **argv;
+	char **cmd_argv;
+	char **env;
 } ref_t;
 /* ------- */
 
@@ -109,8 +113,8 @@ void _buffer_free(char **arg);
 char *_dtos(long);
 int _atoi(char *s);
 void init_ref(ref_t *ref, unsigned int command_number, int exit_status,
-		int argc, char *file_name, char **current_command,
-		char **argv, char **path);
+		int argc, char cmd_buf, char *file_name, char **current_command,
+		char **argv, char **path, char **cmd_argv, char **env);
 char *_getenv(char *s);
 char **_tokenize(char *str, char *split);
 ssize_t _getline(char **lineptr, size_t *n, int fd);

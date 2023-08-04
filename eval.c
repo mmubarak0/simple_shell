@@ -6,7 +6,12 @@
   */
 void _execute_file_command(ref_t *ref)
 {
-	(void)ref;
+	int i;
+
+	printf("command = %s", ref->cmd_buf);
+	for (i = 1; (ref->cmd_argv)[i]; i++)
+		printf(" %s", (ref->cmd_argv)[i]);
+	printf("\n");
 }
 
 /**
@@ -15,5 +20,10 @@ void _execute_file_command(ref_t *ref)
   */
 void _execute_builtin_command(ref_t *ref)
 {
-	(void)ref;
+	int i;
+
+	printf("command = %s", ref->cmd_buf);
+	for (i = 1; (ref->cmd_argv)[i]; i++)
+		printf(" %s", (ref->cmd_argv)[i]);
+	printf("\n");
 }
